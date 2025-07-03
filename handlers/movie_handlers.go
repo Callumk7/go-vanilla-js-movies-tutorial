@@ -40,11 +40,7 @@ func (h *MovieHandler) GetTopMovies(w http.ResponseWriter, r *http.Request) {
 		},
 	}
 
-	w.Header().Set("Content-Type", "application/json")
-	if err := json.NewEncoder(w).Encode(movies); err != nil {
-		// TODO: Log error
-		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-	}
+	h.writeJSONResponse(w, movies)
 }
 
 func (h *MovieHandler) GetRandomMovies(w http.ResponseWriter, r *http.Request) {
@@ -77,8 +73,12 @@ func (h *MovieHandler) GetRandomMovies(w http.ResponseWriter, r *http.Request) {
 		},
 	}
 
+	h.writeJSONResponse(w, movies)
+}
+
+func (h *MovieHandler) writeJSONResponse(w http.ResponseWriter, data any) {
 	w.Header().Set("Content-Type", "application/json")
-	if err := json.NewEncoder(w).Encode(movies); err != nil {
+	if err := json.NewEncoder(w).Encode(data); err != nil {
 		// TODO: Log error
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 	}

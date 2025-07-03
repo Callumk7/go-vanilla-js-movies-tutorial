@@ -26,9 +26,11 @@ func main() {
 
 	movieHandler := handlers.MovieHandler{}
 
+	http.HandleFunc("/api/movies/top", movieHandler.GetTopMovies)
+	http.HandleFunc("/api/movies/random", movieHandler.GetRandomMovies)
+
 	// Handler for static files
 	http.Handle("/", http.FileServer(http.Dir("public")))
-	http.HandleFunc("/movies/top", movieHandler.GetTopMovies)
 
 	const addr = "localhost:8080"
 	err := http.ListenAndServe(addr, nil)
