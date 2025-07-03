@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 
+	"callumkloos.dev/reelingit/handlers"
 	"callumkloos.dev/reelingit/logger"
 )
 
@@ -23,7 +24,11 @@ func main() {
 
 	logInstance := initLogger()
 
+	movieHandler := handlers.MovieHandler{}
+
+	// Handler for static files
 	http.Handle("/", http.FileServer(http.Dir("public")))
+	http.HandleFunc("/movies/top", movieHandler.GetTopMovies)
 
 	const addr = "localhost:8080"
 	err := http.ListenAndServe(addr, nil)
