@@ -32,3 +32,5 @@ func main() {
 		logInstance.Error("Server failed", err)
 	}
 }
+
+// add a comment down here
