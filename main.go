@@ -52,7 +52,10 @@ func main() {
 		log.Fatal("Failed to init movierepo")
 	}
 
-	movieHandler := handlers.MovieHandler{}
+	movieHandler := handlers.MovieHandler{
+		Storage: movieRepo,
+		Logger:  logInstance,
+	}
 
 	http.HandleFunc("/api/movies/top", movieHandler.GetTopMovies)
 	http.HandleFunc("/api/movies/random", movieHandler.GetRandomMovies)
