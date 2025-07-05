@@ -22,4 +22,7 @@ export const API = {
             console.error(error)   
         }
     }
-}
+};
+
+export default API;
+
