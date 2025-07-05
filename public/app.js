@@ -1,15 +1,14 @@
 import "./components/AnimatedLoading.js";
 import "./components/YouTubeEmbed.js";
-import { HomePage } from "./components/HomePage.js";
-import { MovieDetailsPage } from "./components/MovieDetailsPage.js";
 import { API } from "./services/api.js";
+import { Router } from "./services/router.js";
 
-window.addEventListener("DOMContentLoaded", (event) => {
-    // document.querySelector("main").appendChild(new HomePage());
-    document.querySelector("main").appendChild(new MovieDetailsPage());
+window.addEventListener("DOMContentLoaded", () => {
+    app.Router.init();
 })
 
 window.app = {
+    Router,
     search: (event) => {
         event.preventDefault();
 
