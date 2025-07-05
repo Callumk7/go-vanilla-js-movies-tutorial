@@ -1,4 +1,5 @@
 import "./components/AnimatedLoading.js";
+import "./components/YouTubeEmbed.js";
 import { HomePage } from "./components/HomePage.js";
 import { MovieDetailsPage } from "./components/MovieDetailsPage.js";
 import { API } from "./services/api.js";
