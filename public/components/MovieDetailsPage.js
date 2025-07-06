@@ -8,7 +8,7 @@ export class MovieDetailsPage extends HTMLElement {
         try {
             this.movie = await API.getMovieByID(this.id);
         } catch (error) {
-            alert("This movie does not exist, from a component") // TODO: Replace this alert
+            
             return
         }
         const template = document.getElementById("template-movie-details");
