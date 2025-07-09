@@ -1899,8 +1899,6 @@ var (
 Now we create `handlers/account_handlers.go`
 
 ```go
-package handlers
-
 import (
 	"context"
 	"encoding/json"
