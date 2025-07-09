@@ -26,21 +26,34 @@ export const Router = {
         let pageElement = null;
         const routePath = route.includes("?") ? route.split("?")[0] : route;
 
+        let needsLogin = false;
+
         for (const r of routes) {
             if (typeof r.path === "string" && r.path === routePath) {
                 pageElement = new r.component();
+                pageElement.loggedIn = r.loggedIn;
+                needsLogin = r.loggedIn ?? false;
                 break;
             } else if (r.path instanceof RegExp) {
                 const match = r.path.exec(routePath);
                 if (match) {
                     pageElement = new r.component();
+                    pageElement.loggedIn = r.loggedIn;
                     const params = match.slice(1);
                     pageElement.params = params;
+                    needsLogin = r.loggedIn ?? false;
                     break;
                 }
             }
         }
 
+        if (pageElement) {
+            // A page was found and requires login, but the user is not logged in.
+            if (needsLogin && app.Store.loggedIn === false) {
+                app.Router.go("/account/login");
+                return;
+            }
+        }
 
         if (pageElement == null) {
             pageElement = document.createElement("h1");

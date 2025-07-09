@@ -2,12 +2,14 @@ import "./components/AnimatedLoading.js";
 import "./components/YouTubeEmbed.js";
 import { API } from "./services/api.js";
 import { Router } from "./services/router.js";
+import  Store  from "./services/store.js";
 
 window.addEventListener("DOMContentLoaded", () => {
     app.Router.init();
 })
 
 window.app = {
+    Store,
     Router,
     showError: (message = "There was an error", goToHome = true) => {
         document.getElementById("alert-modal").showModal();
@@ -52,6 +54,7 @@ window.app = {
         if (errors.length === 0) {
             const response = await API.register(name, email, password)
             if (response.success) {
+                app.Store.jwt = response.jwt
                 app.Router.go("/account");
             } else {
                 app.showError(response.message);
@@ -75,13 +78,18 @@ window.app = {
         if (errors.length==0) {
             const response = await API.login(email, password);
             if (response.success) {
-                app.Router.go("/account/")
+                app.Store.jwt = response.jwt
+                app.Router.go("/account")
             } else {
                 app.showError(response.message, false);
             }
         } else {
             app.showError(errors.join(". "), false);
         }
+    },
+    logout: () => {
+        Store.jwt = null; // Proxy.. also removes from local storage
+        app.Router.go("/");
     },
     api: API 
 }

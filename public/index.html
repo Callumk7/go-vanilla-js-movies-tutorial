@@ -18,7 +18,7 @@
                     <li><a class="navlink" href="/">Movies</a></li>
                     <li><a class="navlink" href="/account/fav">Favourites</a></li>
                     <li><a class="navlink" href="/account/watchlist">Watchlist</a></li>
-                    <li><a class="navlink" href="/account/">My Account</a></li>
+                    <li><a class="navlink" href="/account">My Account</a></li>
                 </ul>
             </nav>
             <div>
@@ -126,6 +126,15 @@
                     <button>Log In</button>
                     <p>If you don't have an account, please <a href="/account/register">register</a>.</p>
                 </form>
+            </section>
+        </template>
+
+        <template id="template-account">
+            <section id="account">
+                <h2>You are Logged In</h2>
+                <button onclick="app.logout()">Log Out</button>
+                <button onclick="app.Router.go('/account/favorites')">Your Favorites</button>
+                <button onclick="app.Router.go('/account/watchlist')">Your Watchlist</button>
             </section>
         </template>
 
