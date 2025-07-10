@@ -28,7 +28,7 @@ export const API = {
         return await API.fetch("account/watchlist")
     },
     saveToCollection: async (movie_id, collection) => {
-
+        return await API.send("account/save-to-collection", {movie_id, collection})
     },
     send: async (serviceName, data) => {
         const body = JSON.stringify(data);

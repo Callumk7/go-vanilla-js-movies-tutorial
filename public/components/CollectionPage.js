@@ -20,8 +20,7 @@ export class CollectionPage extends HTMLElement {
             });    
         } else {
             ulMovies.innerHTML = "<h3>There are no movies</h3>";
-        }        
-            ;
+        };     
     }
 
     connectedCallback() {
