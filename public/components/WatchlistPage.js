@@ -6,3 +6,4 @@ export class WatchlistPage extends CollectionPage {
         super(API.getWatchlist, "Favorite Movies")
     }
 }
+customElements.define("watchlist-page", WatchlistPage)

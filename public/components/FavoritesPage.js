@@ -6,3 +6,4 @@ export class FavoritesPage extends CollectionPage {
         super(API.getFavorites, "Favorite Movies")
     }
 }
+customElements.define("favorite-page", FavoritesPage);
